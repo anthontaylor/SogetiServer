@@ -19,7 +19,3 @@ To view view the json response, add /name to the end of the url.
 To run unit tests, run:
 
     lein test
-
-## License
-
-Copyright © 2017
