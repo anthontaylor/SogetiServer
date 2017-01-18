@@ -14,6 +14,12 @@ To start a web server for the application, run:
 
 To view view the json response, add /name to the end of the url.
 
+## Testing
+
+To run unit tests, run:
+
+    lein test
+
 ## License
 
 Copyright © 2017
