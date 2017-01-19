@@ -5,9 +5,26 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
-                 [cheshire "5.4.0"]]
-  :plugins [[lein-ring "0.9.7"]]
+                 [cheshire "5.4.0"]
+                 [drift "1.5.3"]
+                 [mysql/mysql-connector-java "5.1.18"]
+                 [metosin/schema-tools "0.9.0"]
+                 [org.clojure/tools.trace "0.7.9"]
+                 [prismatic/schema-generators "0.1.0"]
+                 [spootnik/unilog "0.7.17"]]
+  :jvm-opts ["-Djdbc.drivers=com.mysql.jdbc.Driver"]
+  :plugins [[lein-ring "0.9.7"]
+            [drift "1.5.1"]
+            [lein-environ "1.1.0"]]
   :ring {:handler sogeti-server.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.0"]]}})
+                        [drift "1.5.3"]
+                        [ring/ring-mock "0.3.0"]]
+         :env {
+               :log-env "test"
+               :root-db "sogeti"
+               :db "sogeti"
+               :database "sogeti_d"
+               :user "sogeti_u"
+               :db-subname "//localhost:3306/sogeti_db"}}})

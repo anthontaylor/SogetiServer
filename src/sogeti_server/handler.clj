@@ -10,8 +10,8 @@
        {:status 200
         :headers {"Content-Type" "application/json; charset=utf-8"}
         :body (json/generate-string
-               {:name "AJ"
-                :status "chillen"})})
+               {:name "Obama"
+                :status "UnEmployed"})})
   (route/not-found "Not Found"))
 
 (def app
