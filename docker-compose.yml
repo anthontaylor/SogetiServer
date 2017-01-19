@@ -1,0 +1,14 @@
+version: '2'
+
+services: 
+
+  database:  
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_DB}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${USER}
+      MYSQL_PASSWORD: ${DB}
+
+    ports: 
+     - "3306:3306"
