@@ -17,7 +17,7 @@ Default port is http://localhost:3000/ and you can get basic json response at ht
 
 To connect to database
 
-   docker-compose up
+    docker-compose up
 
 To deploy application as jar file and start the jar file server
     
