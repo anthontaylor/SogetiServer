@@ -15,6 +15,10 @@ To start a web server for the application, run:
 To view view the json response, add /name to the end of the url.
 Default port is http://localhost:3000/ and you can get basic json response at http://localhost:3000/
 
+To connect to database
+
+   docker-compose up
+
 To deploy application as jar file and start the jar file server
     
     lein ring uberjar
