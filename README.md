@@ -2,9 +2,12 @@
 
 ## Prerequisites
 
-You will need [Leiningen][] 2.0.0 or above installed.
+[Leiningen][] 2.0.0 or above.
 
 [leiningen]: https://github.com/technomancy/leiningen
+
+[Docker] []
+[Docker]: https://www.docker.com
 
 ## Running
 
