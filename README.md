@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/anthontaylor/SogetiServer.svg?branch=master)](https://travis-ci.org/anthontaylor/SogetiServer)
+
 # sogeti-server
 
 ## Prerequisites
