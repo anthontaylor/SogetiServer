@@ -1,18 +1,20 @@
 (ns sogeti-server.handler
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
+  (:require [compojure.api.sweet :refer :all]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.util.http-response :refer [ok not-found created bad-request]]
+            [handler.user :as user]
             [cheshire.core :as json]))
 
-(defroutes app-routes
-  (GET "/" [] "Hello World")
-  (GET "/name" []
-       {:status 200
-        :headers {"Content-Type" "application/json; charset=utf-8"}
-        :body (json/generate-string
-               {:name "Obama"
-                :status "UnEmployed"})})
-  (route/not-found "Not Found"))
-
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (api
+   {:swagger
+    {:ui "/"
+    :spec "/swagger.json"
+    :data {:info {:title "Sogeti API"
+                  :description "Sogeti APIs"}
+    :tags [{:name "api", :description "API"}]}}}
+
+(context "/api" []
+   :tags ["api"]
+   user/endpoints)))
+
