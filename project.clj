@@ -31,4 +31,14 @@
                :db "sogeti"
                :database "sogeti_d"
                :user "sogeti_u"
-               :db-subname "//localhost:3306/sogeti_d"}}})
+               :db-subname "//localhost:3306/sogeti_d"}}
+   :docker {:dependencies [[javax.servlet/servlet-api "2.5"]
+                           [ring/ring-mock "0.3.0"]
+                           [drift "1.5.3"]]
+          :env {
+                 :log-env "docker"
+                 :root-db "sogeti"
+                 :db "sogeti"
+                 :database "sogeti_d"
+                 :user "sogeti_u"
+                 :db-subname "//database:3306/sogeti_d"}}})
