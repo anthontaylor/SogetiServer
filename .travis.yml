@@ -2,12 +2,16 @@ language: clojure
 sudo: required
 lein: 2.7.1
 
+env:
+- MYSQL_ROOT_PASSWORD: "sogeti"
+- MYSQL_DATABASE: "sogeti_d"
+
 services:
 - docker
 
 script:
 - docker-compose build api
-#- lein test
+- lein test
 
 jdk:
 - openjdk7
