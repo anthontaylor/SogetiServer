@@ -5,11 +5,9 @@ lein: 2.7.1
 services:
 - docker
 
-install:
-- docker-compose up database
-
 script:
-- lein test
+- docker-compose build api
+#- lein test
 
 jdk:
 - openjdk7
