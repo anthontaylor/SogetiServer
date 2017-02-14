@@ -13,3 +13,11 @@
   (merge CreateUser
     {:created_date Long
      :last_modified_date Long}))
+
+(s/defschema Event
+  {:id Long
+   :title s/Str
+   :description s/Str
+   :start_time s/Str
+   :end_time s/Str
+   :reserved s/Bool})

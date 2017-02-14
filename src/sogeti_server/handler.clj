@@ -3,6 +3,7 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.http-response :refer [ok not-found created bad-request]]
             [handler.user :as user]
+            [handler.events :as events]
             [cheshire.core :as json]))
 
 (def app
@@ -16,5 +17,6 @@
 
 (context "/api" []
    :tags ["api"]
-   user/endpoints)))
+   user/endpoints
+   events/endpoints)))
 

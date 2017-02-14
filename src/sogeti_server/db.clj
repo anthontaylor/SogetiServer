@@ -20,6 +20,13 @@
       (where [:= :ID user_id])
       sql/format))
 
+(defn get-event-query  
+  [event_id] 
+  (-> (select :*)
+      (from :EVENTS)
+      (where [:= :ID event_id])
+      sql/format))
+
 (defn now
   []
   (.getMillis (t/now)))
@@ -39,6 +46,14 @@
    (j/query db)
    first))
 
+(defn get-event
+  [event_id]
+  (->>
+   event_id
+   get-event-query
+   (j/query db)
+   first))
+
 (defn insert-user
   [user]
   (->> user
@@ -46,7 +61,14 @@
        (j/insert! db :USER))
   (get-user (:id user)))
 
+(defn insert-event
+  [event]
+  (->> event
+       (j/insert! db :EVENTS))
+  (get-event (:id event)))
+
 (defn truncate
   []
   (j/with-db-transaction [conn db] 
-    (j/execute! conn ["TRUNCATE TABLE USER"])))
+    (j/execute! conn ["TRUNCATE TABLE USER"])
+    (j/execute! conn ["TRUNCATE TABLE EVENTS"])))
