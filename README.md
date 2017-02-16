@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/anthontaylor/SogetiServer.svg?branch=master)](https://travis-ci.org/anthontaylor/SogetiServer)
+[![Coverage Status](https://coveralls.io/repos/github/anthontaylor/SogetiServer/badge.svg?branch=master)](https://coveralls.io/github/anthontaylor/SogetiServer?branch=master)
 
 # sogeti-server
 
