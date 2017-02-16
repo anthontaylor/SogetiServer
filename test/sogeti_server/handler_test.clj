@@ -5,7 +5,8 @@
             [schema-generators.generators :as g]
             [sogeti-server.schema :as s]
             [sogeti-server.db :as db]
-            [sogeti-server.handler :refer :all]))
+            [sogeti-server.handler :refer :all]
+            [sogeti-server.shared :refer :all]))
 
 (deftest get-user-test
   (testing "User application"
