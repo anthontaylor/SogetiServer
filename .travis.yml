@@ -10,7 +10,7 @@ services:
 - docker
 
 before_install:
-  - docker run --net=host -p 3306:3306 -d mysql:5.5
+  - docker-compose up database
   - sleep 15
   - mysqladmin -h 127.0.0.1 --count=5 --sleep=2 ping
   - mysql -h 127.0.0.1 -e 'SHOW DATABASES;'
