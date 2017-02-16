@@ -9,8 +9,14 @@ env:
 services:
 - docker
 
-#script:
-# - lein test
+before_install:
+  - docker run --net=host -p 3306:3306 -d mysql:5.5
+  - sleep 15
+  - mysqladmin -h 127.0.0.1 --count=5 --sleep=2 ping
+  - mysql -h 127.0.0.1 -e 'SHOW DATABASES;'
+
+script:
+- lein test
 
 jdk:
 - openjdk7
