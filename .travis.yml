@@ -1,10 +1,7 @@
 language: clojure
 lein: 2.7.1
 
-env:
-- MYSQL_ROOT_PASSWORD: "sogeti"
-- MYSQL_DATABASE: "sogeti_d"
-- MYSQL_ROOT_PASSWORD_UPDATE: yes
+env: ENV=travis DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
 
 services:
 - mysql
