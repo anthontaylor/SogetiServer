@@ -1,21 +1,8 @@
 sudo: required
 
-env:
-- MYSQL_ROOT_PASSWORD: "sogeti"
-- MYSQL_DATABASE: "sogeti_d"
-
 services:
-  - docker
-
-language: clojure
-
-lein: lein
+- docker
 
 script:
-  - docker-compose up database
-  - docker-compose build database
-  - lein ring server-headless
-  - lein test
-
-jdk:
-- openjdk7
+- docker-compose up database
+- lein test
