@@ -12,7 +12,6 @@ before_script:
 - docker ps -a
 - netstat -alnp | grep 3306
 - sudo /etc/init.d/mysql stop
-- netstat -alnp | grep 3306
 - docker-compose up -d
 - lein deps
 - lein with-profile docker migrate
