@@ -1,19 +1,18 @@
 language: clojure
 lein: 2.7.1
 
-sudo: required
+#sudo: required
 
-env: ENV=travis DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
+#env: ENV=docker DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
 
 services:
-- mysql
+- docker
 
 before_script:
+- docker-compose up -d
 - lein deps
-- lein with-profile travis migrate
+- lein with-profile docker migrate
 
 script:
-- lein with-profile travis test
+- lein with-profile docker test
 
-jdk:
-- openjdk7
