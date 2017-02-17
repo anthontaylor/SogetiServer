@@ -7,13 +7,13 @@ env:
 - MYSQL_DATABASE: "sogeti_d"
 
 services:
+- mysql
 - docker
 
-before_install:
-  - docker-compose up database
-  - sleep 15
-  - mysqladmin -h 127.0.0.1 --count=5 --sleep=2 ping
-  - mysql -h 127.0.0.1 -e 'SHOW DATABASES;'
+install:
+  - sudo rm -Rf /var/lib/apt/lists/*
+  - sudo apt-get update -qq
+  - sudo apt-get install -y mysql-server-5.6 mysql-client-5.6 mysql-client-core-5.6
 
 script:
 - lein test
