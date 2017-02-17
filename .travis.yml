@@ -12,7 +12,9 @@ language: clojure
 lein: lein
 
 script:
-  - docker-compose up
+  - docker-compose up database
+  - docker-compose build database
+  - lein ring server-headless
   - lein test
 
 jdk:
