@@ -24,4 +24,4 @@ COPY . /usr/src/app
 
 RUN lein with-profile docker do clean, ring uberjar
 
-CMD ["java", "-jar", "target/server-0.0.1-standalone.jar"]
+CMD ["java", "-jar", "target/sogeti-server-0.0.1-standalone.jar"]
