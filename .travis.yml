@@ -1,19 +1,18 @@
 language: clojure
 lein: 2.7.1
 
-#sudo: required
+sudo: required
 
 env: ENV=docker DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
 
 services:
 - docker
 
-before_install:
-- docker ps -a
-
 before_script:
 - docker ps -a
-- docker-compose down
+- netstat -alnp | grep 3306
+- sudo /etc/init.d/mysql stop
+- netstat -alnp | grep 3306
 - docker-compose up -d
 - lein deps
 - lein with-profile docker migrate
