@@ -2,14 +2,18 @@ language: clojure
 sudo: required
 lein: 2.7.1
 
+env:
+- MYSQL_ROOT_PASSWORD: "sogeti"
+- MYSQL_DATABASE: "sogeti_d"
+
 before_script:
     # set up empty database for core test on Travis
     - |
         if [[ "${TEST}" == core ]]
         then
-            mysql --user root --password= <<< 'CREATE DATABASE cgds_test' && \
-            mysql --user root --password= <<< "CREATE USER 'cbio_user'@'localhost' IDENTIFIED BY 'somepassword'" && \
-            mysql --user root --password= <<< "GRANT ALL ON cgds_test.* TO 'cbio_user'@'localhost'" && \
+            mysql --user root --password= <<< 'CREATE DATABASE sogeti_test' && \
+            mysql --user root --password= <<< "CREATE USER 'root'@'localhost' IDENTIFIED BY 'sogeti'" && \
+            mysql --user root --password= <<< "GRANT ALL ON sogeti_test.* TO 'root'@'localhost'" && \
             mysql --user root --password= <<< "flush privileges"
         fi
 
