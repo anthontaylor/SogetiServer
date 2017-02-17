@@ -2,23 +2,22 @@ language: clojure
 sudo: required
 lein: 2.7.1
 
-test:
-  adapter: mysql2
-  database: myapp_test
-  username: root
-  encoding: utf8
+before_script:
+    # set up empty database for core test on Travis
+    - |
+        if [[ "${TEST}" == core ]]
+        then
+            mysql --user root --password= <<< 'CREATE DATABASE cgds_test' && \
+            mysql --user root --password= <<< "CREATE USER 'cbio_user'@'localhost' IDENTIFIED BY 'somepassword'" && \
+            mysql --user root --password= <<< "GRANT ALL ON cgds_test.* TO 'cbio_user'@'localhost'" && \
+            mysql --user root --password= <<< "flush privileges"
+        fi
 
 services:
-- mysql
-#- docker
+- docker
 
-#install:
-#  - sudo rm -Rf /var/lib/apt/lists/*
-#  - sudo apt-get update -qq
-#  - sudo apt-get install -y mysql-server-5.6 mysql-client-5.6 mysql-client-core-5.6
+script:
+- lein test
 
-#script:
-#- lein test
-
-#jdk:
-#- openjdk7
+jdk:
+- openjdk7
