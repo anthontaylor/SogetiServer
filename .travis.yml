@@ -4,6 +4,7 @@ lein: 2.7.1
 env:
 - MYSQL_ROOT_PASSWORD: "sogeti"
 - MYSQL_DATABASE: "sogeti_d"
+- MYSQL_ROOT_PASSWORD_UPDATE: yes
 
 services:
 - mysql
