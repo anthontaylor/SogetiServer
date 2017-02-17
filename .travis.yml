@@ -1,8 +1,19 @@
-sudo: required
+language: clojure
+lein: 2.7.1
+
+env:
+- MYSQL_ROOT_PASSWORD: "sogeti"
+- MYSQL_DATABASE: "sogeti_d"
 
 services:
-- docker
+- mysql
+
+before_script:
+- lein deps
+- lein with-profile travis migrate
 
 script:
-- docker-compose up
-- lein with-profile docker test
+- lein with-profile travis test
+
+jdk:
+- openjdk7
