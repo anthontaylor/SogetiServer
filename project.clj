@@ -19,7 +19,8 @@
   :jvm-opts ["-Djdbc.drivers=com.mysql.jdbc.Driver"]
   :plugins [[lein-ring "0.9.7"]
             [drift "1.5.1"]
-            [lein-environ "1.1.0"]]
+            [lein-environ "1.1.0"]
+            [lein-cloverage "1.0.7-SNAPSHOT"]]
   :ring {:handler sogeti-server.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
