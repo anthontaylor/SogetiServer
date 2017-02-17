@@ -3,7 +3,7 @@ lein: 2.7.1
 
 #sudo: required
 
-#env: ENV=docker DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
+env: ENV=docker DATABASE_NAME=sogeti_d DATABASE_USER=sogeti_u DATABASE_HOST=127.0.0.1 DATABASE_PASSWORD=sogeti
 
 services:
 - docker
