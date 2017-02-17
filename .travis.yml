@@ -1,7 +1,15 @@
+language: clojure
+lein: 2.7.1
+
+sudo: required
+
 services:
 - docker
 
 before_script:
+- docker ps -a
+- netstat -alnp | grep 3306
+- sudo /etc/init.d/mysql stop
 - docker-compose up -d
 - lein deps
 - lein with-profile docker migrate
