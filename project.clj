@@ -51,4 +51,4 @@
                   :db "sogeti"
                   :database "sogeti_d"
                   :user "sogeti_u"
-                  :db-subname "//database:3306/sogeti_d"}}})
+                  :db-subname "//localhost:3306/sogeti_d"}}})
