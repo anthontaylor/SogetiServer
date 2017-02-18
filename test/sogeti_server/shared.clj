@@ -6,3 +6,7 @@
             [sogeti-server.schema :as s]
             [sogeti-server.db :as db]
             [sogeti-server.handler :refer :all]))
+
+(defn data-base-prep [f]
+  (db/truncate)
+  (f))

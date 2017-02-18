@@ -8,6 +8,8 @@
             [sogeti-server.handler :refer :all]
             [sogeti-server.shared :refer :all]))
 
+(use-fixtures :each data-base-prep)
+
 (deftest get-user-test
   (testing "User application"
     (let [user (g/generate s/CreateUser)
