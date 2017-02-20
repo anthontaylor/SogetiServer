@@ -1,3 +1,5 @@
+#Travis CI
+
 [![Build Status](https://travis-ci.org/anthontaylor/SogetiServer.svg?branch=master)](https://travis-ci.org/anthontaylor/SogetiServer)
 [![codecov](https://codecov.io/gh/anthontaylor/SogetiServer/branch/master/graph/badge.svg)](https://codecov.io/gh/anthontaylor/SogetiServer)
 
