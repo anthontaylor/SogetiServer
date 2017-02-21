@@ -20,3 +20,8 @@
        (as-> {:keys [body] :as response}
              (and
               (is (ok? response))))))))
+
+(deftest invalid-user-test 
+  (testing "not-found route"
+    (let [response (app (mock/request :get "/api/user/invalid"))]
+      (is (bad-request? response)))))
