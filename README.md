@@ -14,16 +14,21 @@
 
 ## Running
 
+To migrate database table
+
+    lein migrate
+
+To connect to database and api
+
+    docker-compose up
+
+To build api
+
+    docker-compose build api
+    
 To start a web server for the application, run:
 
     lein ring server
-
-To view view the json response, add /name to the end of the url.
-Default port is http://localhost:3000/ and you can get basic json response at http://localhost:3000/
-
-To connect to database
-
-    docker-compose up
     
 ## Deploying
 
