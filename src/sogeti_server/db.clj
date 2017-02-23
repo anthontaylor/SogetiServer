@@ -5,6 +5,7 @@
             [honeysql.core :as sql]
             [honeysql.helpers :refer :all]
             [environ.core :refer [env]]
+            [clojure.tools.trace :refer [trace]]            
             [clj-time.core :as t]))
 
 (def db {:classname "com.mysql.jdbc.Driver"
@@ -20,12 +21,7 @@
       (where [:= :ID user_id])
       sql/format))
 
-(defn get-event-query  
-  [event_id] 
-  (-> (select :*)
-      (from :EVENTS)
-      (where [:= :ID event_id])
-      sql/format))
+
 
 (defn now
   []
@@ -46,13 +42,6 @@
    (j/query db)
    first))
 
-(defn get-event
-  [event_id]
-  (->>
-   event_id
-   get-event-query
-   (j/query db)
-   first))
 
 (defn insert-user
   [user]
@@ -61,11 +50,50 @@
        (j/insert! db :USER))
   (get-user (:id user)))
 
+(defn get-event-query  
+  [event_id] 
+  (-> (select :*)
+      (from :EVENTS)
+      (where [:= :ID event_id])
+      sql/format))
+
+(defn get-event
+  [event_id]
+  (->>
+   event_id
+   get-event-query
+   (j/query db)
+   first))
+
 (defn insert-event
   [event]
   (->> event
        (j/insert! db :EVENTS))
   (get-event (:id event)))
+
+(defn find-event
+  [user_id]
+  (->>
+   (get-event-query user_id)
+   (j/query db)
+   first))
+
+(defn update-event-query
+  [{id :id :as event}]
+  (-> (update :EVENTS)
+      (sset (dissoc event :id))
+      (where [:= :ID id])
+      sql/format))
+
+
+(defn update-event
+  ([event]
+  (update-event db event))
+  ([conn {uid :id :as event}]
+    (->>  event
+          update-event-query
+          (j/execute! conn))
+    (get-event (:id event))))
 
 (defn truncate
   []

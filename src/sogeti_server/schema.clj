@@ -21,3 +21,13 @@
    :start_time s/Str
    :end_time s/Str
    :reserved s/Bool})
+
+(s/defschema ReturnEvent
+  {:id Long
+   :title s/Str
+   :description s/Str
+   :start_time s/Str
+   :end_time s/Str
+   :reserved s/Bool})
+
+

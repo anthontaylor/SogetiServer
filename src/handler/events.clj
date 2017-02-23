@@ -14,6 +14,10 @@
   [event]
   (db/insert-event event))
 
+(defn update-event
+  [event]
+  (db/update-event event))
+
 (def endpoints
 	(context "/events" []
 		:tags ["events"]
@@ -36,4 +40,14 @@
 :summary "get's an event id"
 (if-let [event (get-event id)]
   (ok event)
-  (not-found)))))
+  (not-found)))
+
+(PUT "/" request
+      :body [event s/ReturnEvent]
+      :responses { 201 {:schema s/ReturnEvent
+                        :description "Resource Updated"}
+                   400 {:description "Bad Request"}}
+      :summary "Updates an Event"
+      (if-let [{id :id :as returned-event} (update-event event)]
+        (created (str "api/event/" id) returned-event)
+        (bad-request "Error")))))
