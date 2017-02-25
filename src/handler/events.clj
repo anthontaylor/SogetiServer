@@ -33,14 +33,14 @@
       (bad-request "Error")))
 
 (GET "/:id" []
-:responses {200 {:schema s/Event
-                 :description "Request a resources"}
-           404  {:description "Not found"}}
-:path-params [id :- Long]
-:summary "get's an event id"
-(if-let [event (get-event id)]
-  (ok event)
-  (not-found)))
+     :responses {200 {:schema s/Event
+                      :description "Request a resources"}
+                 404  {:description "Not found"}}
+     :path-params [id :- Long]
+     :summary "get's an event id"
+     (if-let [event (get-event id)]
+       (ok event)
+       (not-found)))
 
 (PUT "/" request
       :body [event s/ReturnEvent]
