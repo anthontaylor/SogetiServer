@@ -52,3 +52,16 @@
                   (is (created? response))
                   (is (= user (rm-date (coerce-body body))))
                   (is (= user (rm-date (db/get-user id))))))))))
+
+(deftest event-create-test
+  (testing "The creation of an event application"
+    (let [{id :id :as event} (g/generate s/Event)]
+       (-> (mock/request :post "/api/events")
+           (mock/body (generate-string event))
+           (mock/content-type "application/json")
+           app
+           (as-> {:keys [body] :as response}
+                 (and       
+                  (is (created? response))
+                  (is (= event (rm-date (coerce-body body))))
+                  (is (= event (rm-date (db/get-event id))))))))))
