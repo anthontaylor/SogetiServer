@@ -13,5 +13,4 @@
   (f))
 
 (defn coerce-body [body] (-> body slurp (parse-string true)))
-(defn rm-date-id [m] (dissoc m :last_modified_date :id :created_date))
 (defn rm-date [m] (dissoc m :created_date :last_modified_date))

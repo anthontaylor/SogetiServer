@@ -71,20 +71,12 @@
        (j/insert! db :EVENTS))
   (get-event (:id event)))
 
-(defn find-event
-  [user_id]
-  (->>
-   (get-event-query user_id)
-   (j/query db)
-   first))
-
 (defn update-event-query
   [{id :id :as event}]
   (-> (update :EVENTS)
       (sset (dissoc event :id))
       (where [:= :ID id])
       sql/format))
-
 
 (defn update-event
   ([event]
