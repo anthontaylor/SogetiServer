@@ -6,6 +6,7 @@
             [sogeti-server.schema :as s]
             [sogeti-server.db :as db]
             [sogeti-server.handler :refer :all]
+            [clojure.tools.trace :refer [trace]]            
             [sogeti-server.shared :refer :all]))
 
 (use-fixtures :each data-base-prep)
@@ -25,3 +26,15 @@
   (testing "not-found route"
     (let [response (app (mock/request :get "/api/user/invalid"))]
       (is (bad-request? response)))))
+
+
+(deftest get-event-test
+  (testing "Event application"
+    (let [event (g/generate s/Event)
+          {id :id} (db/insert-event event)]
+      (->
+       (mock/request :get (str "/api/events/" id))
+       app       
+       (as-> {:keys [body] :as response}
+             (and
+              (is (ok? response))))))))
