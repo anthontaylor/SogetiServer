@@ -65,6 +65,18 @@
    (j/query db)
    first))
 
+(defn get-all-events-query
+  []
+  (-> (select :*)
+      (from :EVENTS)
+      sql/format))
+
+(defn get-all-events
+  []
+  (->>
+   (get-all-events-query)
+   (j/query db)))
+
 (defn insert-event
   [event]
   (->> event
