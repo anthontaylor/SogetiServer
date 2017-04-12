@@ -22,6 +22,8 @@
    :end_time s/Str
    :reserved s/Bool})
 
+(s/defschema Events [Event])
+
 (s/defschema ReturnEvent
   {:id Long
    :title s/Str
