@@ -1,5 +1,5 @@
 (ns sogeti-server.schema
-	(:require [schema.core :as s]))
+  (:require [schema.core :as s]))
 
 (s/defschema CreateUser
   {:first_name s/Str
@@ -11,8 +11,8 @@
 
 (s/defschema ReturnUser
   (merge CreateUser
-    {:created_date Long
-     :last_modified_date Long}))
+         {:created_date Long
+          :last_modified_date Long}))
 
 (s/defschema Event
   {:id Long
@@ -31,5 +31,4 @@
    :start_time s/Str
    :end_time s/Str
    :reserved s/Bool})
-
 

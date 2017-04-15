@@ -1,13 +1,13 @@
 (ns migrations..20170212212010-user
-    (:require 	[clojure.java.jdbc :as sql]
-                [sogeti-server.db :as m]))
+  (:require 	[clojure.java.jdbc :as sql]
+             [sogeti-server.db :as m]))
 
 (defn up
   "Migrates the database up to version 20170212212010."
   []
-    (sql/db-do-commands 
-  	m/db
-  	["CREATE TABLE USER (
+  (sql/db-do-commands
+   m/db
+   ["CREATE TABLE USER (
   		ID BIGINT NOT NULL PRIMARY KEY, 
   		FIRST_NAME VARCHAR(255) NOT NULL,
   		LAST_NAME VARCHAR(255),
@@ -21,7 +21,7 @@
 (defn down
   "Migrates the database down from version 20170212212010."
   []
-    (sql/db-do-commands 
-  	m/db
-  	["DROP TABLE USER"])
+  (sql/db-do-commands
+   m/db
+   ["DROP TABLE USER"])
   (println "migrations..20170212212010-user down..."))

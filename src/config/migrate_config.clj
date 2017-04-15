@@ -8,7 +8,7 @@
 (defn- create-schema-table
   "Creates the schema table if it doesn't already exist."
   [args]
-  (sql/db-do-commands 
+  (sql/db-do-commands
    db
    ["CREATE TABLE IF NOT EXISTS schema_version (version BIGINT NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT NOW());"]))
 
@@ -27,4 +27,4 @@
   {:directory "src/migrations/"
    :init create-schema-table
    :current-version current-db-version
-   :update-version update-db-version })
+   :update-version update-db-version})

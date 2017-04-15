@@ -10,13 +10,13 @@
   (api
    {:swagger
     {:ui "/"
-    :spec "/swagger.json"
-    :data {:info {:title "Sogeti API"
-                  :description "Sogeti APIs"}
-    :tags [{:name "api", :description "API"}]}}}
+     :spec "/swagger.json"
+     :data {:info {:title "Sogeti API"
+                   :description "Sogeti APIs"}
+            :tags [{:name "api", :description "API"}]}}}
 
-(context "/api" []
-   :tags ["api"]
-   user/endpoints
-   events/endpoints)))
+   (context "/api" []
+     :tags ["api"]
+     user/endpoints
+     events/endpoints)))
 

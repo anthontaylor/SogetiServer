@@ -5,7 +5,7 @@
             [honeysql.core :as sql]
             [honeysql.helpers :refer :all]
             [environ.core :refer [env]]
-            [clojure.tools.trace :refer [trace]]            
+            [clojure.tools.trace :refer [trace]]
             [clj-time.core :as t]))
 
 (def db {:classname "com.mysql.jdbc.Driver"
@@ -14,14 +14,12 @@
          :user "root"
          :password (env :root-db)})
 
-(defn get-user-query  
-  [user_id] 
+(defn get-user-query
+  [user_id]
   (-> (select :*)
       (from :USER)
       (where [:= :ID user_id])
       sql/format))
-
-
 
 (defn now
   []
@@ -32,16 +30,15 @@
   (let [last-modified-date (now)
         created-date (now)
         time-entries {:last_modified_date last-modified-date :created_date created-date}]
-          (merge maps time-entries)))
+    (merge maps time-entries)))
 
 (defn get-user
   [user_id]
-  (->> 
+  (->>
    user_id
    get-user-query
    (j/query db)
    first))
-
 
 (defn insert-user
   [user]
@@ -50,8 +47,8 @@
        (j/insert! db :USER))
   (get-user (:id user)))
 
-(defn get-event-query  
-  [event_id] 
+(defn get-event-query
+  [event_id]
   (-> (select :*)
       (from :EVENTS)
       (where [:= :ID event_id])
@@ -92,15 +89,15 @@
 
 (defn update-event
   ([event]
-  (update-event db event))
+   (update-event db event))
   ([conn {uid :id :as event}]
-    (->>  event
-          update-event-query
-          (j/execute! conn))
-    (get-event (:id event))))
+   (->>  event
+         update-event-query
+         (j/execute! conn))
+   (get-event (:id event))))
 
 (defn truncate
   []
-  (j/with-db-transaction [conn db] 
+  (j/with-db-transaction [conn db]
     (j/execute! conn ["TRUNCATE TABLE USER"])
     (j/execute! conn ["TRUNCATE TABLE EVENTS"])))

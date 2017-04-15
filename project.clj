@@ -8,7 +8,7 @@
                  [org.clojure/java.jdbc "0.7.0-alpha1"]
                  [honeysql "0.8.1"]
                  [cheshire "5.4.0"]
-                 [environ "1.1.0"]                 
+                 [environ "1.1.0"]
                  [drift "1.5.3"]
                  [mysql/mysql-connector-java "5.1.18"]
                  [metosin/schema-tools "0.9.0"]
@@ -20,7 +20,8 @@
   :plugins [[lein-ring "0.9.7"]
             [drift "1.5.1"]
             [lein-environ "1.1.0"]
-            [lein-cloverage "1.0.7-SNAPSHOT"]]
+            [lein-cloverage "1.0.7-SNAPSHOT"]
+            [lein-cljfmt "0.5.6"]]
   :ring {:handler sogeti-server.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
